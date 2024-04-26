@@ -33,6 +33,8 @@ load_dotenv(dotenv_path=env_path)
 # key = os.getenv("AZURE_SEARCH_ADMIN_KEY") 
 # key = key.strip('"')
 
+import streamlit as st
+
 openai.api_key =  st.secrets["AZURE_OPENAI_API_KEY"]
 openai.api_base =  st.secrets["AZURE_OPENAI_ENDPOINT"]
 openai.api_type = "azure"
