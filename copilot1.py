@@ -12,11 +12,11 @@ with open('./user_profile.json') as f:
 functions = FUNCTIONS_SPEC.copy()
 # functions[0]["parameters"]["properties"]["products"]["description"] = functions[0]["parameters"]["properties"]["products"]["description"].format(products=user_profile['products'])
 
-agent = Smart_Agent(persona=PERSONA.format(username=user_profile['username']),functions_list=AVAILABLE_FUNCTIONS, functions_spec=functions, init_message=f"Hi {user_profile['username']}, this is Jennifer, your assistant for ordering delicious food from Pizza House. What would you order today?", engine="sagpt2")
+agent = Smart_Agent(persona=PERSONA.format(username=user_profile['username']),functions_list=AVAILABLE_FUNCTIONS, functions_spec=functions, init_message=f"Hey there! This is Jennifer, your AI Agent for ordering delicious food from PizzaHaus. What would you order today?", engine="sagpt2")
 # agent = Smart_Agent(persona=PERSONA.format(username=user_profile['username']),functions_list=AVAILABLE_FUNCTIONS, functions_spec=functions, init_message=f"Hi {user_profile['username']}, this is Jennifer, your IPL Auction 2023 Guide. What can I do for you?", engine="sagpt2")
 
 # st.set_page_config(layout="wide",page_title="Enterprise Copilot- A demo of Copilot application using GPT")
-st.set_page_config(layout="wide",page_title="PizzaHaus")
+st.set_page_config(layout="wide",page_title="PizzaHaus AI Agent")
 styl = f"""
 <style>
     .stTextInput {{
@@ -31,13 +31,13 @@ st.markdown(styl, unsafe_allow_html=True)
 MAX_HIST= 5
 # Sidebar contents
 with st.sidebar:
-    st.title('Tech Copilot')
+    st.title('PizzaHaus')
     st.markdown('''
     Indulge in Authentic Italian Flavor at PizzaHaus - Where Every Slice is a Taste of Italy!
 
     ''')
     add_vertical_space(5)
-    st.write('Your Assistant : Ms. Jennifer')
+    st.write('Your AI Agent : Ms. Jennifer')
     if st.button('Clear Chat'):
 
         if 'history' in st.session_state:
