@@ -19,18 +19,34 @@ from azure.search.documents import SearchClient
 import inspect
 env_path = Path('.') / 'secrets.env'
 load_dotenv(dotenv_path=env_path)
-openai.api_key =  os.environ.get("AZURE_OPENAI_API_KEY")
-openai.api_base =  os.environ.get("AZURE_OPENAI_ENDPOINT")
+
+# openai.api_key =  os.environ.get("AZURE_OPENAI_API_KEY")
+# openai.api_base =  os.environ.get("AZURE_OPENAI_ENDPOINT")
+# openai.api_type = "azure"
+# emb_engine = os.getenv("AZURE_OPENAI_EMB_DEPLOYMENT")
+# emb_engine = emb_engine.strip('"')
+
+# #azcs implementation
+# service_endpoint = os.getenv("AZURE_SEARCH_SERVICE_ENDPOINT") 
+# index_name = os.getenv("AZURE_SEARCH_INDEX_NAME") 
+# index_name = index_name.strip('"')
+# key = os.getenv("AZURE_SEARCH_ADMIN_KEY") 
+# key = key.strip('"')
+
+openai.api_key =  st.secrets["AZURE_OPENAI_API_KEY"]
+openai.api_base =  st.secrets["AZURE_OPENAI_ENDPOINT"]
 openai.api_type = "azure"
-emb_engine = os.getenv("AZURE_OPENAI_EMB_DEPLOYMENT")
+emb_engine = st.secrets["AZURE_OPENAI_EMB_DEPLOYMENT"]
 emb_engine = emb_engine.strip('"')
 
 #azcs implementation
-service_endpoint = os.getenv("AZURE_SEARCH_SERVICE_ENDPOINT") 
-index_name = os.getenv("AZURE_SEARCH_INDEX_NAME") 
+service_endpoint = st.secrets["AZURE_SEARCH_SERVICE_ENDPOINT"]
+index_name = st.secrets["AZURE_SEARCH_INDEX_NAME"]
 index_name = index_name.strip('"')
-key = os.getenv("AZURE_SEARCH_ADMIN_KEY") 
+key = st.secrets["AZURE_SEARCH_ADMIN_KEY"]
 key = key.strip('"')
+
+
 # @retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6))
 # Function to generate embeddings for title and content fields, also used for query embeddings
 def generate_embeddings(text):
